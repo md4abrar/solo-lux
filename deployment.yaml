@@ -14,13 +14,9 @@ spec:
       labels:
         app: solo-lux-ui
     spec:
-      # imagePullSecrets:
-      #   - name: docker-registry-secret
       containers:
         - name: solo-lux-ui
           image: mdabrar4devops/solo-lux-ui:0.8.0
-          # ports:
-          #   - containerPort: 3000
           # resources:
           #   limits:
           #     cpu: "500m"
