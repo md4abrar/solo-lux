@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solo-lux-ui
+  labels:
+    app: solo-lux-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: solo-lux-ui
+  template:
+    metadata:
+      labels:
+        app: solo-lux-ui
+    spec:
+      # imagePullSecrets:
+      #   - name: docker-registry-secret
+      containers:
+        - name: solo-lux-ui
+          image: mdabrar4devops/solo-lux-ui:0.8.0
+          # ports:
+          #   - containerPort: 3000
+          # resources:
+          #   limits:
+          #     cpu: "500m"
+          #     memory: "256Mi"
+          #   requests:
+          #     cpu: "250m"
+          #     memory: "128Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: solo-lux-ui-service
+spec:
+  selector:
+    app: solo-lux-ui
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: ClusterIP
